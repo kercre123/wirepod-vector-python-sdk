@@ -118,10 +118,14 @@ class _MdnsListener:
         if (self.name_filter is None) or (info.server.lower() == self.name_filter.lower()):
             # found a match for our filter or there is no filter
             self.cond.acquire()
-            self.ipv4 = _MdnsListener._bytes_to_str_ipv4(info.address)   # info.address is IPv4 (DNS record type 'A')
+            self.ipv4 = _MdnsListener._bytes_to_str_ipv4(info.addresses[0])   # info.addresses[0] is IPv4 (DNS record type 'A')
             self.name = info.server
 
             # cause anything waiting for this condition to end waiting
             # and release so the other thread can continue
             self.cond.notify()
             self.cond.release()
+
+    def update_service(self, zeroconf, mdns_type, name):
+        # detect service update
+        pass

@@ -83,9 +83,9 @@ class _ControlEventManager:
     """
 
     def __init__(self, loop: asyncio.BaseEventLoop = None, priority: ControlPriorityLevel = None):
-        self._granted_event = asyncio.Event(loop=loop)
-        self._lost_event = asyncio.Event(loop=loop)
-        self._request_event = asyncio.Event(loop=loop)
+        self._granted_event = asyncio.Event()
+        self._lost_event = asyncio.Event()
+        self._request_event = asyncio.Event()
         self._has_control = False
         self._priority = priority
         self._is_shutdown = False
@@ -769,7 +769,7 @@ def on_connection_thread(log_messaging: bool = True, requires_control: bool = Tr
                 if not conn.requires_behavior_control:
                     raise VectorControlException(func.__name__)
                 logger.info(f"Delaying {func.__name__} until behavior control is granted")
-                await asyncio.wait([conn.control_granted_event.wait()], timeout=10)
+                await asyncio.wait([asyncio.create_task(conn.control_granted_event.wait())], timeout=10)
             message = args[1:]
             outgoing = message if log_messaging else "size = {} bytes".format(sys.getsizeof(message))
             logger.debug(f'Outgoing {func.__name__}: {outgoing}')

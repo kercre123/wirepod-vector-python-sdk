@@ -205,7 +205,7 @@ def add_img_box_to_image(draw: ImageDraw.ImageDraw, box: util.ImageRect, color: 
     x2, y2 = (box.x_top_left + box.width), (box.y_top_left + box.height)
     draw.rectangle([x1, y1, x2, y2], outline=color)
     if text is not None:
-        if isinstance(text, collections.Iterable):
+        if isinstance(text, collections.abc.Iterable):
             for t in text:
                 t.render(draw, (x1, y1, x2, y2))
         else:
