@@ -33,6 +33,7 @@ Requirements:
     * Python 3.6.1
     * Python 3.7
     * Python 3.8
+    * Python 3.11
 """
 
 import os.path
@@ -63,11 +64,11 @@ def get_requirements():
     return reqs
 
 setup(
-    name='cyb3r_vector_sdk',
+    name='wirepod_vector_sdk',
     version=VERSION,
     description="The Vector SDK is a connected vision- and character-based robotics platform for everyone.",
     long_description=__doc__,
-    url='https://github.com/cyb3rdog/vector-python-sdk',
+    url='https://github.com/kercre123/wirepod-vector-python-sdk',
     author='Anki, Inc',
     author_email='developer@anki.com',
     license='Apache License, Version 2.0',
@@ -80,6 +81,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+	'Programming Language :: Python :: 3.11',
     ],
     zip_safe=True,
     keywords='anki vector robot robotics sdk ai vision'.split(),
