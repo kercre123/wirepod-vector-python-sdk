@@ -108,15 +108,9 @@ Example:
 You can generate a local copy of the SDK documetation by
 following the instructions in the `docs` folder of this project.
 
-Learn more about Vector: https://www.anki.com/en-us/vector
+I am hosting SDK documentation here: [https://keriganc.com/sdkdocs](https://keriganc.com/sdkdocs)
 
 Learn more about how Vector works: [Vector Bible](https://github.com/GooeyChickenman/victor/blob/master/documentation/Vector-TRM.pdf)
-
-Learn more about the SDK: https://developer.anki.com/
-
-SDK documentation: https://developer.anki.com/vector/docs/index.html
-
-Forums: https://forums.anki.com/
 
 
 ## Privacy Policy and Terms and Conditions
