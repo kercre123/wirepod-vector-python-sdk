@@ -5,10 +5,10 @@ Getting Started With the Vector SDK
 To make sure you get the best experience possible out of the SDK, please ensure you have followed the steps in the :doc:`Initial Setup </initial>`.
 
 ---------------------
-Anki Developer Forums
+DDL Discord
 ---------------------
 
-Please visit our `Anki Developer Forums <https://forums.anki.com/>`_ where you can:
+If you'd like to, visit the `Unofficial DDL Discord <https://discord.gg/Hs4QuhDush>`_ where you can:
 
 * Get assistance with your code
 
@@ -18,7 +18,7 @@ Please visit our `Anki Developer Forums <https://forums.anki.com/>`_ where you c
 
 * Join discussion about the SDK
 
-* Be a part of the Vector SDK Community!
+* Be a part of the Vector Community!
 
 
 -------------
@@ -27,7 +27,7 @@ Prerequisites
 
 * You have completed the Installation steps, found here: :ref:`initial`
 * You have downloaded and extracted the example programs, found here: :doc:`Downloads </downloads>`
-* The Vector companion app is *not* currently connected to Vector.
+* Vector is set up with wire-pod.
 * Vector is connected to the same network as your computer.
 * You can see Vector's eyes on his screen.
 
@@ -57,7 +57,7 @@ The Program
 
 Then, run the program.
 
-    a. For macOS and Ubuntu 18.04 systems, type the following and press **Enter**::
+    a. For macOS and Ubuntu 22.04 systems, type the following and press **Enter**::
 
         ./01_hello_world.py
 
@@ -69,10 +69,6 @@ Then, run the program.
 
         py 01_hello_world.py
 
-    c. For Ubuntu 16.04 systems, type the following and press **Enter**::
-
-        python3.6 01_hello_world.py
-
 
 2. If done correctly, Vector will say "Hello, World!"
 
@@ -82,12 +78,11 @@ Then, run the program.
     ``./01_hello_world.py --serial {robot_serial_number}``
 
 
-You are now all set up to run Python programs on Vector.
+You are now all set up to run Python programs which communicate with your Vector.
 
 
 
 Now that you have run your own Vector program, take a look at the rest of the Vector SDK and at the many other example programs to get more ideas.
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
+Anki, modified by kercre123
 
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_

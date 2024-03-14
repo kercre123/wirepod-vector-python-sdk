@@ -10,7 +10,7 @@ Advanced Tips
 Moving Vector between WiFi networks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you move Vector from one WiFi network to another (using the Vector App),
+When you move Vector from one WiFi network to another,
 or if your Vector's IP changes, the SDK will need to determine Vector's new IP address.
 There are two ways to accomplish this. 
 
@@ -106,6 +106,5 @@ robot, or restarting the robot will all release behavior control.
 
 ----
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
+Anki, modified by kercre123
 
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_

@@ -20,6 +20,4 @@ Clone, fork, or report issues on the `GitHub wirepod_vector_sdk repository <http
 
 ----
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
-
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_
+Anki, modified by kercre123

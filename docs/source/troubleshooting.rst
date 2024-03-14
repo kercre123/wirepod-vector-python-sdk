@@ -45,9 +45,8 @@ Failure to run anki_vector.configure
 
 The prerequisites to run the ``anki_vector.configure`` executable submodule successfully are:
 
-* You have successfully created an Anki account.
-* Vector has been set up with the Vector companion app.
-* The Vector companion app is *not* currently connected to Vector.
+* wire-pod is running.
+* Vector has been set up with wire-pod.
 * Vector is connected to the same network as your computer.
 * The ``anki_vector`` Python package must be installed.
 * You can see Vector's eyes on his screen.
@@ -81,14 +80,13 @@ Can't find Vector's IP address
 Your Vector IP address looks like "192.168.40.134". Find the IP address from Vector's debug screen: double-click his backpack, move his arms up and down, then look for "IP" on his screen.
 
 
-^^^^^^^^^^^^^^^^^^^^^
-Anki Developer Forums
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
+DDL Discord
+^^^^^^^^^^^
 
-Please visit the `Anki Developer Forums <https://forums.anki.com/>`_ to ask questions, find solutions and for general discussion.
+Please visit the `Unofficial DDL Discord <https://discord.gg/Hs4QuhDush>`_ to ask questions, find solutions and for general discussion.
 
 ----
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
+Anki, modified by kercre123
 
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_

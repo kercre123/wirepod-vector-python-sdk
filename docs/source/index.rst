@@ -10,7 +10,7 @@ The Vector SDK gives you direct access to Vector's unprecedented set of advanced
 
 It's powerful but easy to use, complex but not complicated, and versatile enough to be used across a wide range of domains including enterprise, research, and entertainment.
 
-Please note this is an alpha version of the Vector SDK that is not yet feature complete, but already provides access to many of Vector's hardware and software features. Please visit the official `Anki Developer Forums <https://forums.anki.com/>`_ for more details.
+Please note this is an alpha version of the Vector SDK that is not yet feature complete, but already provides access to many of Vector's hardware and software features.
 
 .. toctree::
     :maxdepth: 1
@@ -51,6 +51,4 @@ Indices and tables
 
 ----
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
-
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_
+Anki, modified by kercre123

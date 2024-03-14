@@ -96,7 +96,7 @@ To upgrade the SDK from a previous install, enter this command::
 Vector Authentication
 ^^^^^^^^^^^^^^^^^^^^^
 
-First, make sure your .anki_vector folder is accessible by the user. To do this, type the following commands into the Terminal window. It may ask for your password. Note that as a security measure, your password will not show up as you are typing it::
+First, in case it exists, make sure your .anki_vector folder is accessible by the user. To do this, type the following commands into the Terminal window. It may ask for your password. Note that as a security measure, your password will not show up as you are typing it::
     
     sudo chmod +rwx ~/.anki_vector
     sudo chown -R $USER ~/.anki_vector
@@ -105,7 +105,7 @@ To authenticate with the robot, type the following into the Terminal window::
 
     python3 -m anki_vector.configure
 
-You will be prompted for your robot's name, ip address and serial number. You will also be asked for your Anki login and password. Make sure to use the same account that was used to set up your Vector.
+You will be prompted for your robot's name, ip address and serial number. You will also be asked to provide the IP address of your wire-pod instance. You can have it try to find the instance automatically if that is more convenient.
 
 You will see "SUCCESS!" when this script successfully completes.
 
@@ -121,10 +121,9 @@ You will see "SUCCESS!" when this script successfully completes.
 Troubleshooting
 ^^^^^^^^^^^^^^^
 
-Please see the :doc:`Troubleshooting </troubleshooting>` page for tips, or visit the `Anki Developer Forums <https://forums.anki.com/>`_ to ask questions, find solutions, or for general discussion.
+Please see the :doc:`Troubleshooting </troubleshooting>` page for tips, or visit the `Unofficial DDL Discord <https://discord.gg/Hs4QuhDush>`_ to ask questions, find solutions, or for general discussion.
 
 ----
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
+Anki, modified by kercre123
 
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_

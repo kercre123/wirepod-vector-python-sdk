@@ -23,15 +23,21 @@ Python Installation
 Download the `Python 3.9 (or later) executable file from Python.org <https://www.python.org/downloads/windows/>`_ and
 run it on your computer.
 
-.. important:: Be sure to tick the "Add Python 3.9 to PATH" checkbox on the Setup screen. Then tap "Install Now" and complete the Python installation.
+.. important:: Be sure to tick the "Add Python 3.X to PATH" checkbox on the Setup screen. Then tap "Install Now" and complete the Python installation.
 
 ^^^^^^^^^^^^^^^^
 SDK Installation
 ^^^^^^^^^^^^^^^^
 
+If you have any other Vector SDK installed, uninstall it by running these commands in the Terminal window::
+
+    py -m pip uninstall anki_vector
+    py -m pip uninstall ikkez_vector
+    py -m pip uninstall cyb3r_vector_sdk
+
 To install the SDK, type the following into the Command Prompt window::
 
-    py -3 -m pip install --user wirepod_vector_sdk
+    py -m pip install --user wirepod_vector_sdk
 
 .. note:: If you encounter an error during SDK installation, you may need to upgrade your pip install. Try ``python -m pip install --upgrade pip`` or ``py -3 -m pip install --upgrade pip``
 
@@ -41,25 +47,21 @@ To install the SDK, type the following into the Command Prompt window::
 SDK Upgrade
 """""""""""
 
-If you have any other Vector SDK installed, uninstall it by running these commands in the Terminal window::
-
-    python3 -m pip uninstall anki_vector
-    python3 -m pip uninstall ikkez_vector
-    python3 -m pip uninstall cyb3r_vector_sdk
-
 To upgrade the SDK from a previous install, enter this command::
 
-    py -3 -m pip install --user --upgrade wirepod_vector_sdk
+    py -m pip install --user --upgrade wirepod_vector_sdk
 
 ^^^^^^^^^^^^^^^^^^^^^
 Vector Authentication
 ^^^^^^^^^^^^^^^^^^^^^
 
-To authenticate with the robot, type the following into the Command Prompt window. Note that during this configure step, your password will not show by design as a security precaution::
+.. important:: If you are installing the SDK on the same machine your wire-pod instance is running on, there is no need to do this. The bot will be automatically configured.
+
+If the SDK machine and the wire-pod machine are different, then to authenticate with the robot, type the following into the Command Prompt window::
 
     py -m anki_vector.configure
 
-You will be prompted for your robot's name, ip address and serial number. You will also be asked for your Anki login and password. Make sure to use the same account that was used to set up your Vector.
+You will be prompted for your robot's name, ip address and serial number. You will also be asked for your wire-pod instance's IP address. You can have it try to find your instance automatically, but it doesn't tend to work well on Windows.
 
 You will see "SUCCESS!" when this script successfully completes.
 
@@ -73,10 +75,8 @@ You will see "SUCCESS!" when this script successfully completes.
 Troubleshooting
 ^^^^^^^^^^^^^^^
 
-Please see the :doc:`Troubleshooting </troubleshooting>` page for tips, or visit the `Anki Developer Forums <https://forums.anki.com/>`_ to ask questions, find solutions, or for general discussion.
+Please see the :doc:`Troubleshooting </troubleshooting>` page for tips, or visit the `Unofficial DDL Discord <https://discord.gg/Hs4QuhDush>`_ to ask questions, find solutions, or for general discussion.
 
 ----
 
-`Terms and Conditions <https://www.anki.com/en-us/company/terms-and-conditions>`_ and `Privacy Policy <https://www.anki.com/en-us/company/privacy>`_
-
-`Click here to return to the Anki Developer website. <https://developer.anki.com>`_
+Anki, modified by kercre123
