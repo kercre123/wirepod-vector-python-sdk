@@ -9,9 +9,7 @@ Prerequisites
 ^^^^^^^^^^^^^
 
 * Vector is powered on.
-* You have successfully created an Anki account.
-* Vector has been set up with the Vector companion app.
-* The Vector companion app is *not* currently connected to Vector.
+* Vector has been set up with wire-pod.
 * Vector is connected to the same network as your computer.
 * You can see Vector's eyes on his screen.
 
@@ -46,9 +44,29 @@ Python Installation
 
     sudo apt-get install python3-pil.imagetk
 
-""""""""""""""""
-SDK Installation
-""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+SDK Installation - Ubuntu 22.04 (Python 3.10 and below)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+If you have any other Vector SDK installed, uninstall it by running these commands in the Terminal window::
+
+    python3 -m pip uninstall -y anki_vector
+    python3 -m pip uninstall -y ikkez_vector
+    python3 -m pip uninstall -y cyb3r_vector_sdk
+
+To install the SDK, type the following into the Terminal window::
+
+    python3 -m pip install --user wirepod_vector_sdk
+
+If you want to use the 3D viewer, type the following as well::
+
+    python3 -m pip install --user wirepod_vector_sdk[3dviewer]
+
+Now move on to Vector Authentication.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+SDK Installation - Arch Linux (Python 3.11 and above)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 If you have any other Vector SDK installed, uninstall it by running these commands in the Terminal window::
 
@@ -59,6 +77,12 @@ If you have any other Vector SDK installed, uninstall it by running these comman
 To install the SDK, type the following into the Terminal window::
 
     python3 -m pip install --break-system-packages --user wirepod_vector_sdk
+
+If you want to use the 3D viewer, type the following as well::
+
+    python3 -m pip install --break-system-packages --user wirepod_vector_sdk[3dviewer]
+
+Now move on to Vector Authentication.
 
 """""""""""
 SDK Upgrade
