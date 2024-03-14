@@ -14,11 +14,9 @@ Originally forked by [cyb3rdog](https://github.com/cyb3rdog/vector_python_sdk), 
 
 ## Getting Started
 
-For the steps undocumented here, you can still refer to [this original SDK documentation](https://developer.anki.com/vector/docs/index.html).
-*(TODO: docs are old and needs to be updated, contributors wanted)*
+I am hosting SDK documentation here: [https://keriganc.com/sdkdocs](https://keriganc.com/sdkdocs)
 
-If you are new to the Vector's Python SDK, refer to this documentation anyways, as it still contains lots of valuable information.
-
+The documentation contains installation guides, helpful tips, walkthroughs, and function descriptions which will help you use the thing.
 
 ### Python Installation
 
@@ -43,7 +41,7 @@ sudo apt-get update
 sudo apt-get install -y python3 python3-pip python3-tk python3-pil.imagetk build-essential libssl-dev libffi-dev freeglut3
 ```
 
-Create a file at ~/.config/pip/pip.conf with the following text:
+If you are using Python 3.11 or abnove, create a file at ~/.config/pip/pip.conf with the following text:
 
 ```
 [global]
