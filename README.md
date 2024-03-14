@@ -1,9 +1,8 @@
 ﻿
 # Anki/DDL Vector - Python SDK
-by cyb3rdog
 
 ## With support for any bot on wire-pod!
-(theoretically) Compatible with Ubuntu 16.04 - 22.04 and Python 3.6.1 - 3.11
+(theoretically) Compatible with Ubuntu 16.04 - 22.04 and Python 3.6.1 - 3.12
 
 This is the extended fork of the original Anki Vector Python SDK.
 
