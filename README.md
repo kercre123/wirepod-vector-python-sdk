@@ -2,10 +2,12 @@
 # Anki/DDL Vector - Python SDK
 by cyb3rdog
 
-## With support for Production, EscapePod and OSKR robots!
-Compatible with Ubuntu 16.04 - 20.04 and Python 3.6.1 - 3.9
+## With support for any bot on wire-pod!
+(theoretically) Compatible with Ubuntu 16.04 - 22.04 and Python 3.6.1 - 3.11
 
 This is the extended fork of the original Anki Vector Python SDK.
+
+Originally forked by [cyb3rdog](https://github.com/cyb3rdog/vector_python_sdk), then forked by [MoonDog83](https://github.com/MoonDog82/vector-python-sdk) who added 3.11 support and regenerated the proto, and finally forked by me (kercre123).
 
 ![Vector](docs/source/images/vector-sdk-alpha.jpg)
 
@@ -39,7 +41,13 @@ Open the Terminal and run following commands to install and update the Python, a
 ```
 sudo apt-get update
 sudo apt-get install -y python3 python3-pip python3-tk python3-pil.imagetk build-essential libssl-dev libffi-dev freeglut3
-pip3 install --upgrade setuptools
+```
+
+Create a file at ~/.config/pip/pip.conf with the following text:
+
+```
+[global]
+break-system-packages = true
 ```
 
 ### SDK Installation
@@ -50,17 +58,18 @@ In case you have previously installed the original ***Anki*** or ***Ikkez*** SDK
 
 - ```pip uninstall anki_vector``` or ```pip3 uninstall anki_vector```
 - ```pip uninstall ikkez_vector``` or ```pip3 uninstall ikkez_vector```
+- ```pip uninstall cyb3r_vector_sdk``` or ```pip3 uninstall cyb3r_vector_sdk```
 
 To install this new SDK, run:
 
-- ```pip install cyb3r_vector_sdk``` or ```pip3 install cyb3r_vector_sdk```
+- ```pip install wirepod_vector_sdk``` or ```pip3 install wirepod_vector_sdk```
 and
-- ```pip install "cyb3r_vector_sdk[3dviewer]"``` or ```pip3 install "cyb3r_vector_sdk[3dviewer]"```
+- ```pip install "wirepod_vector_sdk[3dviewer]"``` or ```pip3 install "wirepod_vector_sdk[3dviewer]"```
 
 
 To upgrade this SDK to its latest version, use:
 
-- ```pip install cyb3r_vector_sdk --upgrade``` or ```pip3 install cyb3r_vector_sdk --upgrade```
+- ```pip install wirepod_vector_sdk --upgrade``` or ```pip3 install wirepod_vector_sdk --upgrade```
 
 
 If you want to know where the SDK files are installed, use following command:
@@ -71,26 +80,10 @@ If you want to know where the SDK files are installed, use following command:
 
 ### SDK Configuration
 
-To configure the Python SDK for **Prod**, and/or **Prod+OSKR** robots, run:
+To authenticate a bot with the SDK (works when bot is connected to wire-pod):
 
 - Windows:  **```py -m anki_vector.configure```**
 - Linux:    **```python3 -m anki_vector.configure```**
-
-To configure the Python SDK for **EscapePod**, and/or **EP+OSKR** robots, run:
-
-- Windows:  **```py -m anki_vector.configure_pod```**
-- Linux:    **```python3 -m anki_vector.configure_pod```**
-
-
-### SDK Usage - EscapePod
-
-You can either use the ```anki_vector.configure_pod``` in order to save your authentication into the sdk_config.ini file, and use all the [examples](https://github.com/cyb3rdog/vector-python-sdk/tree/master/examples) and your own programs and as you have them, OR you can use the Robot object setting (or sdk_config) with the ```escape_pod``` parameter to True, and passing just the robot's ip address:
-
-```
-    with anki_vector.Robot(ip="192.168.0.148", escape_pod=True) as robot:
-        robot.behavior.say_text("Hello Escape Pod")
-```
-
 
 ### Log Level
 

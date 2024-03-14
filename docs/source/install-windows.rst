@@ -22,10 +22,10 @@ Prerequisites
 Python Installation
 ^^^^^^^^^^^^^^^^^^^
 
-Download the `Python 3.6.1 (or later) executable file from Python.org <https://www.python.org/downloads/windows/>`_ and
+Download the `Python 3.9 (or later) executable file from Python.org <https://www.python.org/downloads/windows/>`_ and
 run it on your computer.
 
-.. important:: Be sure to tick the "Add Python 3.6 to PATH" checkbox on the Setup screen. Then tap "Install Now" and complete the Python installation.
+.. important:: Be sure to tick the "Add Python 3.9 to PATH" checkbox on the Setup screen. Then tap "Install Now" and complete the Python installation.
 
 ^^^^^^^^^^^^^^^^
 SDK Installation
@@ -33,7 +33,7 @@ SDK Installation
 
 To install the SDK, type the following into the Command Prompt window::
 
-    py -3 -m pip install --user anki_vector
+    py -3 -m pip install --user wirepod_vector_sdk
 
 .. note:: If you encounter an error during SDK installation, you may need to upgrade your pip install. Try ``python -m pip install --upgrade pip`` or ``py -3 -m pip install --upgrade pip``
 
@@ -43,9 +43,15 @@ To install the SDK, type the following into the Command Prompt window::
 SDK Upgrade
 """""""""""
 
+If you have any other Vector SDK installed, uninstall it by running these commands in the Terminal window::
+
+    python3 -m pip uninstall anki_vector
+    python3 -m pip uninstall ikkez_vector
+    python3 -m pip uninstall cyb3r_vector_sdk
+
 To upgrade the SDK from a previous install, enter this command::
 
-    py -3 -m pip install --user --upgrade anki_vector
+    py -3 -m pip install --user --upgrade wirepod_vector_sdk
 
 ^^^^^^^^^^^^^^^^^^^^^
 Vector Authentication
@@ -59,7 +65,7 @@ You will be prompted for your robot's name, ip address and serial number. You wi
 
 You will see "SUCCESS!" when this script successfully completes.
 
-.. note:: By running the ``anki_vector.configure`` executable submodule, you will be asked to provide your Anki account credentials, and the script will automatically download an authentication token and certificate to your computer that will grant you access to the robot and his capabilities (such as camera and audio) as well as data stored on the robot (such as faces and photos).
+.. note:: By running the ``anki_vector.configure`` executable submodule, you will be asked to provide your wire-pod instance IP address (you can also have the script automatically try to find the wire-pod instance), and the script will automatically download an authentication token and certificate to your computer that will grant you access to the robot and his capabilities (such as camera and audio) as well as data stored on the robot (such as faces and photos).
 
   The downloaded access token is equivalent to your account credentials. It will be stored in your user directory (~/.anki_vector) along with a robot identity certificate and other useful data for establishing a connection. Do not share your access token.
 

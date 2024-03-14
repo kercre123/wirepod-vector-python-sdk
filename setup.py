@@ -16,7 +16,7 @@
 Anki/DDL Vector - Python SDK:
     by cyb3rdog
 
-## With support for Production, EscapePod and OSKR robots! ##
+## With support for Production, wire-pod and OSKR robots! ##
 This is the extended fork of the original Anki Vector Python SDK.
 
 For more information, please visit the project Github site: https://github.com/cyb3rdog/vector-python-sdk
@@ -30,9 +30,10 @@ Vector SDK documentation: https://developer.anki.com/vector/docs/
 Official developer forum: https://forums.anki.com/
 
 Requirements:
-    * Python 3.6.1
     * Python 3.7
     * Python 3.8
+    * Python 3.9
+    * Python 3.10
     * Python 3.11
 """
 
@@ -84,8 +85,8 @@ setup(
 	'Programming Language :: Python :: 3.11',
     ],
     zip_safe=True,
-    keywords='anki vector robot robotics sdk ai vision'.split(),
-    packages=['anki_vector', 'anki_vector.camera_viewer', 'anki_vector.configure', 'anki_vector.configure_pod', 'anki_vector.messaging', 'anki_vector.opengl', 'anki_vector.reserve_control'],
+    keywords='anki wire pod wire-pod vector robot robotics sdk ai vision'.split(),
+    packages=['anki_vector', 'anki_vector.camera_viewer', 'anki_vector.configure', 'anki_vector.messaging', 'anki_vector.opengl', 'anki_vector.reserve_control'],
     package_data={
         'anki_vector': ['LICENSE.txt', 'opengl/assets/*.obj', 'opengl/assets/*.mtl', 'opengl/assets/*.jpg',
                   'opengl/assets/LICENSE.txt']

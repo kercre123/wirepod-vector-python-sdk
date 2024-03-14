@@ -99,10 +99,14 @@ def get_serial(serial=None):
 
 
 def get_cert(serial=None):
+    print("\n\nEnter the IP address and webserver port of your wire-pod instance (ex. 192.168.1.50:8080) (:8080 is the default port)\nLeave this blank and press enter if you want this script to attempt to automatically connect to your wire-pod instance via escapepod.local.")
+    podip = input("Enter wire-pod ip: ")
+    if podip == "":
+        podip = "escapepod.local:8080"
     serial = get_serial(serial)
-    print("\nDownloading Vector certificate from Anki...", end="")
+    print("\nDownloading Vector certificate from wire-pod...", end="")
     sys.stdout.flush()
-    r = requests.get('https://session-certs.token.global.anki-services.com/vic/{}'.format(serial))
+    r = requests.get('http://{}/session-certs/{}'.format(podip, serial))
     if r.status_code != 200:
         print(colored(" ERROR", "red"))
         sys.exit(r.content)
@@ -311,11 +315,12 @@ def main(api):
     cert_file = save_cert(cert, name, serial, anki_dir)
     validate_cert_name(cert_file, name)
 
-    token = get_session_token(api, args.email)
-    if not token.get("session"):
-        sys.exit("Session error: {}".format(token))
+    # token = get_session_token(api, args.email)
+    # if not token.get("session"):
+    #     sys.exit("Session error: {}".format(token))
+    token = "2vMhFgktH3Jrbemm2WHkfGN"
 
-    guid = user_authentication(token["session"]["session_token"], cert, ip, name)
+    guid = user_authentication(token, cert, ip, name)
 
     # Store credentials in the .anki_vector directory's sdk_config.ini file
     write_config(serial, cert_file, ip, name, guid)

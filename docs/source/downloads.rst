@@ -16,7 +16,7 @@ Download Python example scripts that use the Vector SDK.
 GitHub
 ------
 
-Clone, fork, or report issues on the `GitHub vector-python-sdk repository <https://github.com/anki/vector-python-sdk>`_.
+Clone, fork, or report issues on the `GitHub wirepod_vector_sdk repository <https://github.com/kercre123/wirepod_vector_sdk>`_.
 
 ----
 

@@ -35,7 +35,6 @@ import grpc
 import aiogrpc
 
 from . import util
-from .escapepod import EscapePod
 from .exceptions import (connection_error,
                          VectorAsyncException,
                          VectorBehaviorControlException,
@@ -207,12 +206,11 @@ class Connection:
                                    requires behavior control, or None to decline control.
     """
 
-    def __init__(self, name: str, host: str, cert_file: str, guid: str, escape_pod: bool = False, behavior_control_level: ControlPriorityLevel = ControlPriorityLevel.DEFAULT_PRIORITY):
+    def __init__(self, name: str, host: str, cert_file: str, guid: str, behavior_control_level: ControlPriorityLevel = ControlPriorityLevel.DEFAULT_PRIORITY):
         self._loop: asyncio.BaseEventLoop = None
         self.name = name
         self.host = host
         self.cert_file = cert_file
-        self._escape_pod = escape_pod
         self._interface = None
         self._channel = None
         self._has_control = False
@@ -502,14 +500,8 @@ class Connection:
                 with open(self.cert_file, 'rb') as cert:
                     trusted_certs = cert.read()
             else:
-                if not self._escape_pod:
-                    raise VectorConfigurationException("Must provide a cert file to authenticate to Vector.")
+                raise VectorConfigurationException("Must provide a cert file to authenticate to Vector.")
 
-            if self._escape_pod:
-                if not EscapePod.validate_certificate_name(self.cert_file, self.name):
-                    trusted_certs = EscapePod.get_authentication_certificate(self.host)
-                    self.name = EscapePod.get_certificate_name(trusted_certs)
-                self._guid = EscapePod.authenticate_escape_pod(self.host, self.name, trusted_certs)
 
             # Pin the robot certificate for opening the channel
             channel_credentials = aiogrpc.ssl_channel_credentials(root_certificates=trusted_certs)

@@ -42,6 +42,7 @@ __all__ = ["MAX_HEAD_ANGLE", "MIN_HEAD_ANGLE",
 from . import connection, faces, objects, util
 from .messaging import protocol
 from .exceptions import VectorException
+from typing import Union
 
 # Constants
 
@@ -259,7 +260,132 @@ class BehaviorComponent(util.Component):
                                                    use_vector_voice=use_vector_voice,
                                                    duration_scalar=duration_scalar)
         return await self.conn.grpc_interface.SayText(say_text_request)
+    # begin copied from github.com/ikkez
+    def say_localized_text(self, text: str, use_vector_voice: bool = True, duration_scalar: float = 1.0,
+                           language: str = 'en') -> protocol.SayTextResponse:
+        """Make Vector speak text with a different localized voice.
 
+                .. testcode::
+
+                    import anki_vector
+                    with anki_vector.Robot() as robot:
+                        robot.behavior.say_localized_text("Hello World",language="de")
+
+        :param text: The words for Vector to say.
+        :param use_vector_voice: Whether to use Vector's robot voice
+                (otherwise, he uses a generic human male voice).
+        :param duration_scalar: Adjust the relative duration of the
+                generated text to speech audio.
+        :param language: Adjust the language spoken for this text
+
+            possible values:
+                - de:         German
+                - en:         English
+                - ja or jp:   Japanese
+                - fr:         French
+
+        :return: object that provides the status and utterance state
+        """
+
+        if language == 'en':
+            locale = 'en_US'
+        if language == 'de':
+            locale = 'de_DE'
+        elif language == 'fr':
+            locale = 'fr_FR'
+        elif language == 'ja' or language == 'jp':
+            locale = 'ja_JP'
+            duration_scalar = duration_scalar / 3
+        else:
+            locale = language
+
+        if self.robot.force_async:
+            # @TODO: make sure requests are sent in conjunction when say_future would be returned -
+            #  currently it's blocking async, to ensure the language is switched back after talking
+            #  because otherwise the persisted different locale would lead to failed cloud requests,
+            #  as on english seems to be supported right now and vector would show network-error on his screen
+            self.change_locale(locale=locale).result()
+            say_future = self.say_text(text, use_vector_voice, duration_scalar)
+            res = say_future.result()
+            self.change_locale(locale='en_US').result()
+            return res
+        else:
+            self.change_locale(locale=locale)
+            say_future = self.say_text(text, use_vector_voice, duration_scalar)
+            self.change_locale(locale='en_US')
+        return say_future
+
+    # TODO Make this cancellable with is_cancellable_behavior
+    @connection.on_connection_thread(requires_control=False)
+    async def app_intent(self, intent: str, param: Union[str, int] = None) -> protocol.AppIntentResponse:
+        """Send Vector an intention to do something.
+
+        .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot(behavior_control_level=None) as robot:
+                robot.behavior.app_intent(intent='intent_system_sleep')
+
+        :param intent: The intention key
+        :param param: Intention parameter, usually a json encoded string or an int of secounds for the clock timer
+
+        :return: object that provides the status
+        """
+
+        # clock timer uses the length of `param` as the number of seconds to set the timer for
+        if intent=='intent_clock_settimer' and type(param) == int:
+            param = 'x' * param
+
+        app_intent_request = protocol.AppIntentRequest(intent=intent, param=param)
+        return await self.conn.grpc_interface.AppIntent(app_intent_request)
+
+    # TODO Make this cancellable with is_cancellable_behavior
+    @connection.on_connection_thread()
+    async def change_locale(self, locale: str) -> protocol.UpdateSettingsResponse:
+        """Change Vectors voice locale
+
+        .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot() as robot:
+                robot.behavior.change_locale(locale='de_DE')
+
+        :param locale: The locale ISO code
+
+        :return: object that provides the status
+        """
+
+        settings = {'locale': locale}
+        updatet_settings_request = protocol.UpdateSettingsRequest(settings=settings)
+        return await self.conn.grpc_interface.UpdateSettings(updatet_settings_request)
+
+    # TODO Make this cancellable with is_cancellable_behavior
+    @connection.on_connection_thread()
+    async def update_settings(self, settings) -> protocol.UpdateSettingsResponse:
+        """Send Vector an intention to do something.
+
+        .. testcode::
+
+            import anki_vector
+            with anki_vector.Robot() as robot:
+                robot.behavior.update_settings(settings={'locale':'en_US'})
+
+        :param settings: A list object with the following keys
+            clock_24_hour: bool
+            eye_color: EyeColor
+            default_location: string,
+            dist_is_metric: bool
+            locale: string
+            master_volume: Volume
+            temp_is_fahrenheit: bool
+            time_zone: string
+            button_wakeword: ButtonWakeWord
+
+        :return: object that provides the status
+        """
+        updatet_settings_request = protocol.UpdateSettingsRequest(settings=settings)
+        return await self.conn.grpc_interface.UpdateSettings(updatet_settings_request)
+    # end copied from github.com/ikkez
     # TODO Make this cancellable with is_cancellable?
     @connection.on_connection_thread()
     async def set_eye_color(self, hue: float, saturation: float) -> protocol.SetEyeColorResponse:

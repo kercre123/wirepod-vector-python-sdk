@@ -1079,7 +1079,7 @@ class Component:
         return self._robot.conn.grpc_interface
 
 
-def read_configuration(serial: str, name: str, logger: logging.Logger, escape_pod:bool = False) -> dict:
+def read_configuration(serial: str, name: str, logger: logging.Logger) -> dict:
     """Open the default conf file, and read it into a :class:`configparser.ConfigParser`
     If :code:`serial is not None`, this method will try to find a configuration with serial
     number :code:`serial`, and raise an exception otherwise. If :code:`serial is None` and
@@ -1098,8 +1098,6 @@ def read_configuration(serial: str, name: str, logger: logging.Logger, escape_po
 
     sections = parser.sections()
     if not sections:
-        if escape_pod:
-            return {}
         raise VectorConfigurationException('Could not find the sdk configuration file. Please run `python3 -m anki_vector.configure` or `python3 -m anki_vector.configure_pod` to set up your Vector for SDK usage.')
     elif (serial is None) and (name is None):
         if len(sections) == 1:

@@ -44,6 +44,7 @@ from typing import Callable, Iterable, Tuple, Union
 
 try:
     from PIL import Image, ImageDraw
+    import PIL
 except ImportError:
     sys.exit("Cannot import from PIL: Do `pip3 install --user Pillow` to install")
 except SyntaxError:
@@ -65,6 +66,8 @@ RESAMPLE_MODE_NEAREST = Image.NEAREST
 #: Slower, but smoother, resampling mode - linear interpolation from 2x2 grid of pixels
 RESAMPLE_MODE_BILINEAR = Image.BILINEAR
 
+
+PILLOW_VERSION = tuple(map(int, PIL.__version__.split('.')))
 
 class AnnotationPosition(Enum):
     """Specifies where the annotation must be rendered."""
@@ -148,13 +151,18 @@ class ImageText:  # pylint: disable=too-few-public-methods
         self.full_outline = full_outline
 
     def render(self, draw: ImageDraw.ImageDraw, bounds: tuple) -> ImageDraw.ImageDraw:
-        """Renders the text onto an image within the specified bounding box.
+        """Renders the text onto an image within the specified bounding box."""
 
-        :param draw: The drawable surface to write on
-        :param bounds(top_left_x, top_left_y, bottom_right_x, bottom_right_y): bounding box
-        """
         (bx1, by1, bx2, by2) = bounds
-        text_width, text_height = draw.textsize(self.text, font=self.font)
+        
+        # Use textsize for Pillow versions before 8.0.0, and textbbox for 8.0.0 and later
+        if PILLOW_VERSION < (8, 0, 0):
+            text_width, text_height = draw.textsize(self.text, font=self.font)
+        else:
+            dummy_position = (0, 0)  # Dummy position for textbbox calculation
+            text_bbox = draw.textbbox(dummy_position, self.text, font=self.font)
+            text_width = text_bbox[2] - text_bbox[0]
+            text_height = text_bbox[3] - text_bbox[1]
 
         if self.position.value & AnnotationPosition.TOP.value:
             y = by1
@@ -166,27 +174,22 @@ class ImageText:  # pylint: disable=too-few-public-methods
         else:
             x = bx2 - text_width
 
-        # helper method for each draw call below
         def _draw_text(pos, color):
             draw.text(pos, self.text, font=self.font, fill=color,
                       align=self.align, spacing=self.line_spacing)
 
         if self.outline_color is not None:
-            # Pillow doesn't support outlined or shadowed text directly.
-            # We manually draw the text multiple times to achieve the effect.
             if self.full_outline:
                 _draw_text((x - 1, y), self.outline_color)
                 _draw_text((x + 1, y), self.outline_color)
                 _draw_text((x, y - 1), self.outline_color)
                 _draw_text((x, y + 1), self.outline_color)
             else:
-                # just draw a drop shadow (cheaper)
                 _draw_text((x + 1, y + 1), self.outline_color)
 
         _draw_text((x, y), self.color)
 
         return draw
-
 
 def add_img_box_to_image(draw: ImageDraw.ImageDraw, box: util.ImageRect, color: str, text: Union[ImageText, Iterable[ImageText]] = None) -> None:
     """Draw a box on an image and optionally add text.
